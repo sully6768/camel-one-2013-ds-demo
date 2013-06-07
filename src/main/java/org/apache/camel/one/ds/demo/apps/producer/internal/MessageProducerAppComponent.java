@@ -14,49 +14,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.one.demo.apps.consumer.internal;
+package org.apache.camel.one.ds.demo.apps.producer.internal;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.component.Reference;
 
+import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import org.apache.camel.one.demo.apps.consumer.AppConsumer;
-import org.apache.camel.one.demo.services.consumer.ConsumerService;
+import org.apache.camel.one.ds.demo.services.producer.ProducerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * TODO Add Class documentation for AppConsumerProvider
+ * TODO Add Class documentation for MessageProducerAppComponent
  *
  * @author sully6768
  */
-@Component(
-           name="org.apache.camel.one.demo.apps.consumer",
-           provide={})
-public class AppConsumerProvider implements AppConsumer {
+@Component(name="org.apache.camel.one.ds.demo.apps.producer.internal")
+public class MessageProducerAppComponent {
 
     private static final transient Logger LOG = LoggerFactory
-            .getLogger(AppConsumerProvider.class);
+            .getLogger(MessageProducerAppComponent.class);
 
-    public static final String COMPONENT_LABEL = "DS Camel Consumer App";
+    public static final String COMPONENT_LABEL = "DS Camel Demo Message Producer App Component";
     
-    private ConsumerService consumerService;
+    private ProducerService producerService;
     private ReadWriteLock rwl = new ReentrantReadWriteLock(true);
-    
-    public void handleMessage(Object message) {
-        LOG.info("Message Received: " + message);
-    }
-    
+    private MessageProducerApp app;
+
     @Activate
     public synchronized void activate() throws Exception {
         LOG.info("Activating: " + COMPONENT_LABEL);
+
         try {
             rwl.writeLock().lock();
-            consumerService.registerAppConsumer(this);
+            app = new MessageProducerApp();
+            app.setProducerService(producerService);
+            app.setStarted(true);
+            Thread t = new Thread(app);
+            t.start();
         } finally {
             rwl.writeLock().unlock();
         }
@@ -67,31 +67,31 @@ public class AppConsumerProvider implements AppConsumer {
         LOG.info("Deactivating: " + COMPONENT_LABEL);
         try {
             rwl.writeLock().lock();
-            consumerService.unregisterAppConsumer(this);
+            app.setStarted(false);
+            app.setProducerService(null);
         } finally {
             rwl.writeLock().unlock();
         }
     }
 
     @Reference
-    public void setProducerService(ConsumerService consumerService) {
-        LOG.info("Binding ProducerService: " + consumerService);
+    public void setProducerService(ProducerService producerService, Map<String, ?> properties) {
+        LOG.info("Binding ProducerService: " + producerService);
         try {
             rwl.writeLock().lock();
-            this.consumerService = consumerService;
+            this.producerService = producerService;
         } finally {
             rwl.writeLock().unlock();
         }
     }
 
-    public void unsetProducerService(ConsumerService consumerService) {
-        LOG.info("Unbinding ProducerService: " + consumerService);
+    public void unsetProducerService(ProducerService producerService, Map<?, ?> properties) {
+        LOG.info("Unbinding ProducerService: " + producerService);
         try {
             rwl.writeLock().lock();
-            this.consumerService = null;
+            this.producerService = null;
         } finally {
             rwl.writeLock().unlock();
         }
     }
-
 }

@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.one.demo.apps.producer;
+package org.apache.camel.one.ds.demo.apps.producer.internal;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.camel.one.demo.services.producer.ProducerService;
+import org.apache.camel.one.ds.demo.services.producer.ProducerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

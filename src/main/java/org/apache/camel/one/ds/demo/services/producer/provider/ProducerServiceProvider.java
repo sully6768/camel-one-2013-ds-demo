@@ -1,4 +1,4 @@
-package org.apache.camel.one.demo.services.producer.provider;
+package org.apache.camel.one.ds.demo.services.producer.provider;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
@@ -13,12 +13,12 @@ import javax.jms.ConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.apache.camel.one.demo.services.internal.AbstractJmsService;
-import org.apache.camel.one.demo.services.producer.ProducerService;
+import org.apache.camel.one.ds.demo.services.internal.AbstractJmsService;
+import org.apache.camel.one.ds.demo.services.producer.ProducerService;
 
 
 @Component(
-           name="org.apache.camel.one.demo.services.producer",
+           name="org.apache.camel.one.ds.demo.services.producer",
            servicefactory=true,
            configurationPolicy=ConfigurationPolicy.require)
 public class ProducerServiceProvider extends AbstractJmsService implements ProducerService {

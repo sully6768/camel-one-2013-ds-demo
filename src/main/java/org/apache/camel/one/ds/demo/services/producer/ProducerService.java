@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.apache.camel.one.demo.services.producer;
+package org.apache.camel.one.ds.demo.services.producer;
 
 import java.util.Map;
 

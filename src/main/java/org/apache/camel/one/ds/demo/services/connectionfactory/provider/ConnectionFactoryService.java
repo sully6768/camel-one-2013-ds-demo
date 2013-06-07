@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.one.demo.services.connectionfactory;
+package org.apache.camel.one.ds.demo.services.connectionfactory.provider;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * @author <a href="mailto:sully6768@apache.org">Scott England-Sullivan</a>
  */
 @Component(
-           name="org.apache.camel.one.demo.services.connectionfactory",
+           name="org.apache.camel.one.ds.demo.services.connectionfactory",
            servicefactory=false,
            configurationPolicy=ConfigurationPolicy.require)
 public class ConnectionFactoryService extends PooledConnectionFactory implements ConnectionFactory {

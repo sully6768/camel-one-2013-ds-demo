@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.one.demo.services.consumer.provider;
+package org.apache.camel.one.ds.demo.services.consumer.provider;
 
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
@@ -34,9 +34,9 @@ import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.one.demo.apps.consumer.AppConsumer;
-import org.apache.camel.one.demo.services.consumer.ConsumerService;
-import org.apache.camel.one.demo.services.internal.AbstractJmsService;
+import org.apache.camel.one.ds.demo.apps.consumer.AppConsumer;
+import org.apache.camel.one.ds.demo.services.consumer.ConsumerService;
+import org.apache.camel.one.ds.demo.services.internal.AbstractJmsService;
 
 /**
  * TODO Add Class documentation for ConsumerServiceProvider
@@ -44,7 +44,7 @@ import org.apache.camel.one.demo.services.internal.AbstractJmsService;
  * @author sully6768
  */
 @Component(
-           name = "org.apache.camel.one.demo.services.consumer",
+           name = "org.apache.camel.one.ds.demo.services.consumer",
            configurationPolicy=ConfigurationPolicy.require)
 public class ConsumerServiceProvider extends AbstractJmsService implements ConsumerService {
 

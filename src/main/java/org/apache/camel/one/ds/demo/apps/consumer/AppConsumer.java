@@ -14,16 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.one.demo.services.consumer;
-
-import org.apache.camel.one.demo.apps.consumer.AppConsumer;
+package org.apache.camel.one.ds.demo.apps.consumer;
 
 /**
- * TODO Add Class documentation for ConsumerService
+ * TODO Add Class documentation for AppConsumer
  *
  * @author sully6768
  */
-public interface ConsumerService {
-    void registerAppConsumer(AppConsumer appConsumer);
-    void unregisterAppConsumer(AppConsumer appConsumer);
+public interface AppConsumer {
+    void handleMessage(Object message);
 }

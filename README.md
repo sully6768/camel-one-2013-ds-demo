@@ -22,6 +22,7 @@ config:delete org.apache.camel.one.ds.demo.services.consumer
 config:delete org.apache.camel.one.ds.demo.services.producer
 config:delete org.apache.camel.one.ds.demo.services.connectionfactory
 
+
 Add the ConnectionFactory Service Config 
 ------------------------ 
 config:edit org.apache.camel.one.ds.demo.services.connectionfactory
@@ -30,11 +31,13 @@ config:propset username karaf
 config:propset password karaf
 config:update
 
+
 Add the Consumer Service Config 
 ------------------------ 
 config:edit org.apache.camel.one.ds.demo.services.consumer
 config:propset endpointUri sjms:queue:camelone.demo.test.queue
 config:update
+
 
 Add the Producer Service Config 
 ------------------------ 

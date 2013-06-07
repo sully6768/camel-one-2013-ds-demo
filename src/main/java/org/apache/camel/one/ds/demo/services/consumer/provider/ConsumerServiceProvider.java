@@ -28,15 +28,14 @@ import java.util.Map;
 
 import javax.jms.ConnectionFactory;
 
-import org.osgi.service.component.ComponentContext;
-
-import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.sjms.SjmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.one.ds.demo.apps.consumer.AppConsumer;
 import org.apache.camel.one.ds.demo.services.consumer.ConsumerService;
 import org.apache.camel.one.ds.demo.services.internal.AbstractJmsService;
+import org.osgi.service.component.ComponentContext;
 
 /**
  * TODO Add Class documentation for ConsumerServiceProvider
@@ -111,9 +110,9 @@ public class ConsumerServiceProvider extends AbstractJmsService implements Consu
 
             LOG.info("Creating the Camel Context");
             camelContext = new DefaultCamelContext();
-            LOG.info("Activating the ActiveMQComponent");
-            ActiveMQComponent amqc = getConnectionFactoryInstance(connectionFactory);
-            camelContext.addComponent("activemq", amqc);
+            LOG.info("Activating the SjmsComponent");
+            SjmsComponent sjms = getConnectionFactoryInstance(connectionFactory);
+            camelContext.addComponent("sjms", sjms);
             LOG.info("Starting the Camel Context");
             camelContext.start();
         } catch (Exception e) {

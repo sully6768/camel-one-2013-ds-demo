@@ -33,13 +33,13 @@ config:update
 Add the Consumer Service Config 
 ------------------------ 
 config:edit org.apache.camel.one.ds.demo.services.consumer
-config:propset endpointUri activemq:queue:camelone.demo.test.queue
+config:propset endpointUri sjms:queue:camelone.demo.test.queue
 config:update
 
 Add the Producer Service Config 
 ------------------------ 
 config:edit org.apache.camel.one.ds.demo.services.producer
-config:propset endpointUri activemq:queue:camelone.demo.test.queue
+config:propset endpointUri sjms:queue:camelone.demo.test.queue
 config:update
 
 

@@ -21,8 +21,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.jms.ConnectionFactory;
 
-import org.apache.activemq.camel.component.ActiveMQComponent;
-import org.apache.camel.component.jms.JmsConfiguration;
+import org.apache.camel.component.sjms.SjmsComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,11 +36,10 @@ public class AbstractJmsService {
     
     protected ReadWriteLock rwl = new ReentrantReadWriteLock(true);
 
-    protected ActiveMQComponent getConnectionFactoryInstance(ConnectionFactory connectionFactory) {
-        JmsConfiguration jc = new JmsConfiguration(connectionFactory);
-        ActiveMQComponent amqc = new ActiveMQComponent();
-        amqc.setConfiguration(jc);
-        return amqc;
+    protected SjmsComponent getConnectionFactoryInstance(ConnectionFactory connectionFactory) {
+        SjmsComponent sjms = new SjmsComponent();
+        sjms.setConnectionFactory(connectionFactory);
+        return sjms;
     }
 
 }

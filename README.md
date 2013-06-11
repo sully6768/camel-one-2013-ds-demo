@@ -9,10 +9,10 @@ install mvn:org.apache.karaf.scr/org.apache.karaf.scr.examples.service/2.3.1
 features:chooseurl camel 2.11.0  
 features:chooseurl activemq 5.8.0  
 features:install activemq-broker  
+features:install webconsole-scr  
 features:install camel-core  
-features:install camel-jms  
-install mvn:org.apache.camel/camel-sjms/2.11.0  
-webconsole-scr  
+features:install camel-sjms  
+install -s mvn:org.apache.camel/org.apache.camel.one.ds.demo/1.0.0-SNAPSHOT  
 
 
 ### Purge any configurations:
